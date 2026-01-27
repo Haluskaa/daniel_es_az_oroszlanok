@@ -129,19 +129,24 @@
     // ---------------------------
     // CONFIG (itt állítgasd)
     // ---------------------------
+    const SOLUTION_HASH= "d4c0278b7d4dd8f2ca178f0367f8b5e866af4e10e54a1341623604b43a47695c"
+    const SOL_PARTS = [
+      "xZAgQVogw4lMxZAg",
+      "SVNURU4gTUVHTUFS",
+      "QUQgw5ZSw5ZLS8OJ",
+    ];
     const CONFIG = {
       goalSeconds: 20,            // ennyit kell túlélni a megoldáshoz
-      solutionText: "MEGOLDÁS: 317", // ide írd a kódot / clue-t
-      lionSpawnEvery: 1200,       // ms: induló spawn gyakoriság
-      lionSpawnMin: 450,          // ms: minimum spawn idő a gyorsulás végén
-      lionSpeedBase: 85,          // px/s alap sebesség
-      lionSpeedMax: 260,          // px/s max (idővel közelít ide)
+      lionSpawnEvery: 1050,       // ms: induló spawn gyakoriság
+      lionSpawnMin: 300,          // ms: minimum spawn idő a gyorsulás végén
+      lionSpeedBase: 80,          // px/s alap sebesség
+      lionSpeedMax: 325,          // px/s max (idővel közelít ide)
       lionRadius: 18,             // px
-      playerRadius: 18,           // px
+      playerRadius: 15,           // px
       freezeDuration: 2000,       // ms
       freezeCooldown: 8000,       // ms
-      difficultyRampSeconds: 22,  // ~mennyi idő alatt gyorsul fel durván (gameplay-hez)
-      maxLions: 28                // teljesítmény limit
+      difficultyRampSeconds: 20,  // ~mennyi idő alatt gyorsul fel durván (gameplay-hez)
+      maxLions: 100                // teljesítmény limit
     };
 
     // ---------------------------
@@ -242,11 +247,29 @@
       } else if (kind === "win") {
         titleEl.textContent = "Siker";
         msgEl.textContent = "„Isten bezárta az oroszlánok száját.”";
-        hintEl.textContent = CONFIG.solutionText;
+        hintEl.textContent = revealSolution();
       }
     }
 
     function hideOverlay() { overlay.style.display = "none"; }
+    
+    const _0x9f2 = [
+  197,144,32,65,90,32,195,137,76,197,144,32,
+  73,83,84,69,78,32,
+  77,69,71,77,65,82,65,68,32,
+  195,150,82,195,150,75,75,195,137
+];
+
+const _0xa1c = [...Array(_0x9f2.length).keys()];
+
+function revealSolution(){
+  let _r = new Uint8Array(_0xa1c.length);
+  for(let _i=0; _i<_0xa1c.length; _i++){
+    _r[_i] = (_0x9f2[_0xa1c[_i]] ^ 0);
+  }
+  return new TextDecoder("utf-8").decode(_r);
+}
+
 
     // Difficulty curve: 0..1 over ramp seconds
     function difficulty01() {
@@ -537,7 +560,7 @@
       ctx.fillText(emoji, x, y + 1);
       ctx.restore();
     }
-
+  
     // ---------------------------
     // UI buttons
     // ---------------------------
